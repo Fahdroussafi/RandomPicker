@@ -1,10 +1,18 @@
+// import fs from "fs";
 var tableContent = document.querySelector(".tableContent");
 
-const log = (ele) => {
-  console.log(ele);
-};
-
 let elements = [];
+
+// //Skipping wekeend
+// function skippingWekeend(date, days) {
+//   let d = moment(new Date(date)).add(Math.floor(days / 5) * 7, "d");
+//   let remaining = days % 5;
+//   while (remaining) {
+//     d.add(1, "d");
+//     if (d.day() !== 0 && d.day() !== 6) remaining--;
+//   }
+//   return d.format("YYYY-MM-DD");
+// }
 
 const getInput = () => {
   let fullname = document.getElementById("fullname").value;
@@ -29,7 +37,6 @@ document.querySelector("#btnAdd").addEventListener("click", getInput);
 const fetchElements = async () => {
   const response = await fetch("http://localhost:3000/elements");
   const data = await response.json();
-  // console.log(data);
   await render(data);
   return data;
 };
@@ -46,23 +53,19 @@ const addElement = async (element) => {
     body: JSON.stringify(element),
   });
   const data = await res.json();
-  // console.log(data);
   render(fetchElements());
 };
 
-// delete all elements function from json file when you click on clear button
-// const deleteAllElements = async () => {
-//   let res = await fetch("http://localhost:3000/elements", {
-//     method: "DELETE",
-//   });
-//   let data = await res.json();
-//   console.log(data);
-//   render(fetchElements());
+// const path = "./test.txt";
+// const deleteFile = () => {
+//   try {
+//     fs.unlinkSync(path);
+//     console.log("File removed:", path);
+//   } catch (err) {
+//     console.error(err);
+//   }
 // };
-
-// document
-//   .querySelector("#btnEmpty")
-//   .addEventListener("click", deleteAllElements);
+// document.querySelector("#btnEmpty").addEventListener("click", deleteFile);
 
 const render = (elements) => {
   tableContent.innerHTML = "";
