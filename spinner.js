@@ -25,26 +25,21 @@ const render = async (elements) => {
     if (e.status === "notChoosed") {
       var newSpin = document.createElement("div");
       newSpin.classList.add("scale-50");
-      newSpin.classList.add("w-48");
+      newSpin.classList.add("w-50");
       newSpin.classList.add("nodeChildrenSpinner");
 
       newSpin.innerHTML = `
-            <div class=" p-3 text-2xl  ${
-              e.id == random ? "bg-red-600 text-white -mt-2" : "bg-white"
+            <div class=" p-3 text-2xl text-center ${
+              e.id == random
+                ? "bg-red-600 rounded-full w-full h-full text-white border-2"
+                : "bg-white border-2 border-black w-full h-full"
             } ${e.status != "notChoosed" ? "bg-gray-200" : ""}" id="id_${
         e.id
       }" >
-            <h3 class="text-2xl font-semibold items-baseline whitespace-nowrap">${
+            <h3 class="text-5xl font-semibold items-baseline whitespace-nowrap">${
               e.fullName
             }</h3>
-            <p>${e.subject}</p>
-            ${
-              e.status != "notChoosed"
-                ? '<hr class="border-white"/><p class="text-black mt-2">' +
-                  e.date +
-                  "</p>"
-                : ""
-            }
+            <p class="text-3xl m-2 items-baseline whitespace-nowrap ">
             </div>
             `;
       document.getElementById("spinnerWinner").innerHTML =
@@ -69,11 +64,9 @@ const scrollToElement = (id) => {
 
 spinner.addEventListener("scroll", () => {
   let nodeChildren = document.querySelectorAll("nodeChildrenSpinner");
-  // var audio = new Audio("./Mouse.mp3");
   nodeChildren.forEach((e) => {
     if (e.offsetLeft < spinner.scrollLeft + spinner.clientWidth) {
       //scale
-      audio.play();
       e.style.transform = `scale(0.2)`;
       e.style.transition = `transform 0.5s`;
     } else {

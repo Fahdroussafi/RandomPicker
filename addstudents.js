@@ -1,7 +1,8 @@
 var tableContent = document.querySelector(".tableContent");
-// const log = (ele) => {
-//   console.log(ele);
-// };
+
+const log = (ele) => {
+  console.log(ele);
+};
 
 let elements = [];
 
@@ -49,24 +50,19 @@ const addElement = async (element) => {
   render(fetchElements());
 };
 
-// delete all elements from json file and table content in html
+// delete all elements function from json file when you click on clear button
 // const deleteAllElements = async () => {
-//   const res = await fetch(`http://localhost:3000/elements/`, {
+//   let res = await fetch("http://localhost:3000/elements", {
 //     method: "DELETE",
-//     headers: {
-//       "Content-type": "application/json",
-//     },
-//     body: null,
-//   }).then((res) => console.log(res));
-//   // const data = await res.json();
-//   // console.log(data);
+//   });
+//   let data = await res.json();
+//   console.log(data);
 //   render(fetchElements());
 // };
 
-// add event listener when you click on the button empty table to remove all elements
-document.querySelector("#btnEmpty").addEventListener("click", () => {
-  deleteAllElements();
-});
+// document
+//   .querySelector("#btnEmpty")
+//   .addEventListener("click", deleteAllElements);
 
 const render = (elements) => {
   tableContent.innerHTML = "";
@@ -79,8 +75,8 @@ const render = (elements) => {
       <td class="text-center">${e.status}</td>
       <td class="text-center">${e.subject} </td>
       <td class="text-center">${e.date}</td>
-          <td class="p-2">
-          <button class="p-1 rounded-md bg-red-500 text-white px-3 focus:scale-95 btnReset" id="${e.id}">Reset</button>
+          <td class="p-2 flex justify-center">
+          <button class="p-1  rounded-md bg-red-500 text-white px-3 focus:scale-95 btnReset" id="${e.id}">Reset</button>
           </td>
           `;
       tableContent.appendChild(newTd);
