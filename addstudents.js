@@ -1,22 +1,9 @@
-// import fs from "fs";
-var tableContent = document.querySelector(".tableContent");
+// let elements = [];
 
-let elements = [];
-
-// //Skipping wekeend
-// function skippingWekeend(date, days) {
-//   let d = moment(new Date(date)).add(Math.floor(days / 5) * 7, "d");
-//   let remaining = days % 5;
-//   while (remaining) {
-//     d.add(1, "d");
-//     if (d.day() !== 0 && d.day() !== 6) remaining--;
-//   }
-//   return d.format("YYYY-MM-DD");
-// }
+var tableContent = document.querySelector(".tableContent"); // get the table content from the json file
 
 const getInput = () => {
   let fullname = document.getElementById("fullname").value;
-  // let subject = document.getElementById("subject").value;
   if (!fullname) {
     alert("Please enter a name");
   } else {
@@ -56,30 +43,20 @@ const addElement = async (element) => {
   render(fetchElements());
 };
 
-// const path = "./test.txt";
-// const deleteFile = () => {
-//   try {
-//     fs.unlinkSync(path);
-//     console.log("File removed:", path);
-//   } catch (err) {
-//     console.error(err);
-//   }
-// };
-// document.querySelector("#btnEmpty").addEventListener("click", deleteFile);
-
 const render = (elements) => {
-  tableContent.innerHTML = "";
+  tableContent.innerHTML = ""; // clear the table
   if (elements.length) {
+    // if there are elements in the array then render them
     elements.map((e, idx) => {
       var newTd = document.createElement("tr");
-      newTd.classList.add("hover:bg-blue-100");
+      newTd.classList.add("hover:bg-black"); // add class to the new td
       newTd.innerHTML = `
       <td class="text-center">${e.fullName}</td>
       <td class="text-center">${e.status}</td>
       <td class="text-center">${e.subject} </td>
       <td class="text-center">${e.date}</td>
           <td class="p-2 flex justify-center">
-          <button class="p-1  rounded-md bg-red-500 text-white px-3 focus:scale-95 btnReset" id="${e.id}">Reset</button>
+          <button class="p-1 rounded-full bg-red-500 text-white font-bold px-4 btnReset" id="${e.id}">Reset</button>
           </td>
           `;
       tableContent.appendChild(newTd);
@@ -89,7 +66,7 @@ const render = (elements) => {
 };
 
 const addEventListenerToReset = () => {
-  const btnReset = document.querySelectorAll(".btnReset");
+  const btnReset = document.querySelectorAll(".btnReset"); // get all the reset buttons from the table
   btnReset.forEach((btn) => {
     btn.addEventListener("click", (e) => {
       resetElement(e.target.id);
