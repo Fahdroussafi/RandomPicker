@@ -25,14 +25,13 @@ const render = async (elements) => {
     if (e.status === "notChoosed") {
       var newSpin = document.createElement("div");
       newSpin.classList.add("scale-50");
-      newSpin.classList.add("w-50");
-      newSpin.classList.add("nodeChildrenSpinner");
+      newSpin.classList.add("w-full");
 
       newSpin.innerHTML = `
-            <div class="p-3 text-2xl text-center ${
+            <div class=" p-3 text-2xl text-center  ${
               e.id == random
-                ? "bg-red-600 rounded-3xl w-full h-20 text-white border-2 shadow-2xl"
-                : "bg-white border-2 border-black w-full h-20"
+                ? "bg-red-600 rounded-3xl text-white border-2 shadow-2xl"
+                : "bg-white border-2 border-black"
             } ${
         e.status != "notChoosed" ? "bg-gray-200" : " shadow-2xl"
       }" id="id_${e.id}" > 
@@ -51,32 +50,6 @@ const render = async (elements) => {
   scrollToElement(randomElement.id);
 };
 
-//scroll to
-const scrollToElement = (id) => {
-  let childrenPos = document.getElementById("id_" + id).offsetLeft;
-  let parentPos = document.getElementById("spinner").offsetLeft;
-
-  spinner.scrollTo({
-    left: childrenPos - parentPos - 150,
-    behavior: "smooth",
-  });
-};
-
-spinner.addEventListener("scroll", () => {
-  let nodeChildren = document.querySelectorAll("nodeChildrenSpinner");
-  nodeChildren.forEach((e) => {
-    if (e.offsetLeft < spinner.scrollLeft + spinner.clientWidth) {
-      //scale
-      e.style.transform = `scale(0.2)`;
-      e.style.transition = `transform 0.5s`;
-    } else {
-      //scale
-      e.style.transform = `scale(0.9)`;
-      e.style.transition = `transform 0.5s`;
-    }
-  });
-});
-
 //onclick rendomize
 var elements = fetchElements();
 
@@ -89,10 +62,10 @@ randomizeButton.addEventListener("click", () => {
   let interval = setInterval(() => {
     fetchElements();
     i++;
-    if (i > 20) {
+    if (i > 25) {
       clearInterval(interval);
     }
-  }, 200);
+  }, 100);
 });
 
 fetchElements();
