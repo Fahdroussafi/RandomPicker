@@ -24,9 +24,9 @@
     {
       "id": "41663920560509",
       "fullName": "Test",
-      "subject": "NotAdded",
-      "status": "notChoosed",
-      "date": ""
+      "subject": "React",
+      "status": "choosed",
+      "date": "09/27/2022"
     },
     {
       "id": "31663928551267",
@@ -52,6 +52,13 @@
     {
       "id": "21663928560725",
       "fullName": "TEST 3",
+      "subject": "JAVA",
+      "status": "choosed",
+      "date": "09/27/2022"
+    },
+    {
+      "id": "61664195830004",
+      "fullName": "hamza",
       "subject": "NotAdded",
       "status": "notChoosed",
       "date": ""
