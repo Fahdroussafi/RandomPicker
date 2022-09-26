@@ -21,6 +21,7 @@
     // get holiday list in the datepicker calendar 
     $(function () {
       var currentYear = new Date().getFullYear();
+
       $.ajax({
         // morocco holiday list
         url: `https://date.nager.at/api/v2/PublicHolidays/${currentYear}/MA`,
@@ -109,7 +110,7 @@
           id="btnSpinner">Spinner</button>
       </div>
 
-      <div class="w-full flex gap-3 p-3 overflow-x-scroll " id="spinner">
+      <div class="grid grid-cols-6 gap-4 place-items-center p-2" id="spinner">
 
       </div>
 
