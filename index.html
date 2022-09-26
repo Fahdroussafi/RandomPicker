@@ -14,13 +14,40 @@
   <script type="text/javascript">
     $(function () {
       $("#datePickerInput").datepicker({
-        defaultDate: "+1w",
-        changeMonth: true,
-        numberOfMonths: 1,
-        beforeShowDay: $.datepicker.noWeekends
+
+
       });
     });
+    // get holiday list in the datepicker calendar 
+    $(function () {
+      $.ajax({
+        // morocco holiday list
+        url: "https://date.nager.at/api/v2/PublicHolidays/2022/MA",
+        type: "GET",
+        dataType: "json",
+        success: function (data) {
+          var holidays = [];
+          for (var i = 0; i < data.length; i++) {
+            holidays.push(data[i].date);
+          }
+          $("#datePickerInput").datepicker("option", "beforeShowDay", function (date) {
+            // no weekends
+            var day = date.getDay();
+            if (day == 0 || day == 6) {
+              return [false];
+            }
+            var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
+            return [holidays.indexOf(string) == -1]
+
+          });
+          // dont allow to select days before today
+          $("#datePickerInput").datepicker("option", "minDate", 0);
+        }
+      });
+    });
+
   </script>
+
 
   <title>Random Name Picker</title>
 </head>
