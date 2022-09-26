@@ -18,7 +18,7 @@ const render = async (elements) => {
   });
 
   //arr random
-  random = arr[Math.floor(Math.random() * arr.length)];
+  random = arr[Math.floor(Math.random() * arr.length)]; // get random element from the array of notChoosed elements
   let randomElement = elements.find((element) => element.id === random);
   randomElement.style = "transform: scale(1.3)";
   await elements.map((e) => {
@@ -29,17 +29,17 @@ const render = async (elements) => {
       newSpin.classList.add("nodeChildrenSpinner");
 
       newSpin.innerHTML = `
-            <div class=" p-3 text-2xl text-center ${
+            <div class="p-3 text-2xl text-center ${
               e.id == random
-                ? "bg-red-600 rounded-full w-full h-full text-white border-2"
-                : "bg-white border-2 border-black w-full h-full"
-            } ${e.status != "notChoosed" ? "bg-gray-200" : ""}" id="id_${
-        e.id
-      }" >
+                ? "bg-red-600 rounded-3xl w-full h-20 text-white border-2 shadow-2xl"
+                : "bg-white border-2 border-black w-full h-20"
+            } ${
+        e.status != "notChoosed" ? "bg-gray-200" : " shadow-2xl"
+      }" id="id_${e.id}" > 
             <h3 class="text-5xl font-semibold items-baseline whitespace-nowrap">${
               e.fullName
             }</h3>
-            <p class="text-3xl m-2 items-baseline whitespace-nowrap ">
+            <p class="text-3xl m-2 items-baseline whitespace-nowrap "</p>
             </div>
             `;
       document.getElementById("spinnerWinner").innerHTML =
