@@ -83,6 +83,17 @@ var elements = fetchElements();
 //add event listener to randomize button
 const randomizeButton = document.querySelector("#btnSpinner");
 randomizeButton.addEventListener("click", fetchElements);
+// autoclicker for 5 seconds everytime you click the button
+randomizeButton.addEventListener("click", () => {
+  let i = 0;
+  let interval = setInterval(() => {
+    fetchElements();
+    i++;
+    if (i > 20) {
+      clearInterval(interval);
+    }
+  }, 200);
+});
 
 fetchElements();
 document.querySelector("#btnAdd").addEventListener("click", fetchElements);
