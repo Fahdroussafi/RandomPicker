@@ -20,9 +20,10 @@
     });
     // get holiday list in the datepicker calendar 
     $(function () {
+      var currentYear = new Date().getFullYear();
       $.ajax({
         // morocco holiday list
-        url: "https://date.nager.at/api/v2/PublicHolidays/2022/MA",
+        url: `https://date.nager.at/api/v2/PublicHolidays/${currentYear}/MA`,
         type: "GET",
         dataType: "json",
         success: function (data) {
